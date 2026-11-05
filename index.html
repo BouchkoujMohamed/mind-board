@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a1120">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Mind Board — offline Chess, Classic Checkers (8×8) and International Dama (10×10). Play a friend on one device or challenge a five-level AI.">
+<title>Mind Board</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a1120'/%3E%3Crect x='6' y='6' width='10' height='10' fill='%23d6b26a'/%3E%3Crect x='16' y='16' width='10' height='10' fill='%23d6b26a'/%3E%3Crect x='16' y='6' width='10' height='10' fill='%23f1e6cf'/%3E%3Crect x='6' y='16' width='10' height='10' fill='%23f1e6cf'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gw" x1="0" y1="0" x2="0.55" y2="1"><stop offset="0" stop-color="#fffbf3"/><stop offset="1" stop-color="#e0cda6"/></linearGradient>
+    <linearGradient id="gb" x1="0" y1="0" x2="0.55" y2="1"><stop offset="0" stop-color="#4a5776"/><stop offset="1" stop-color="#121826"/></linearGradient>
+    <radialGradient id="cw" cx="0.38" cy="0.32" r="0.78"><stop offset="0" stop-color="#fffaf0"/><stop offset="1" stop-color="#d6c095"/></radialGradient>
+    <radialGradient id="cb" cx="0.38" cy="0.32" r="0.78"><stop offset="0" stop-color="#4f5d7d"/><stop offset="1" stop-color="#111725"/></radialGradient>
+  </defs>
+</svg>
+
+<div id="app">
+  <section id="home" class="screen" aria-labelledby="brand-title">
+    <header class="brand">
+      <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+        <rect x="2" y="2" width="60" height="60" rx="15" fill="#101a2d" stroke="#d6b26a" stroke-opacity=".55" stroke-width="2"/>
+        <rect x="14" y="14" width="18" height="18" rx="2" fill="#d6b26a"/>
+        <rect x="32" y="32" width="18" height="18" rx="2" fill="#d6b26a"/>
+        <rect x="32" y="14" width="18" height="18" rx="2" fill="#f1e6cf"/>
+        <rect x="14" y="32" width="18" height="18" rx="2" fill="#f1e6cf"/>
+        <circle cx="41" cy="23" r="5" fill="#101a2d"/>
+        <circle cx="23" cy="41" r="5" fill="#101a2d"/>
+      </svg>
+      <h1 id="brand-title">Mind Board</h1>
+      <p class="tagline">Chess, checkers &amp; dama for quiet, focused play.</p>
+    </header>
+    <div id="game-cards" class="cards"></div>
+    <nav class="home-actions" aria-label="More">
+      <button class="btn ghost" id="home-help">How to play</button>
+      <button class="btn ghost" id="home-settings">Settings</button>
+    </nav>
+    <p class="fineprint">Fully offline · No account · Progress stays on this device</p>
+  </section>
+
+  <section id="play" class="screen" hidden aria-label="Game">
+    <header class="topbar">
+      <button class="icon-btn" id="btn-menu" aria-label="Main menu" title="Main menu"></button>
+      <div class="tb-title"><strong id="tb-game">Chess</strong><span id="tb-sub"></span></div>
+      <button class="icon-btn" id="btn-pause" aria-label="Pause" title="Pause (P)"></button>
+      <button class="icon-btn" id="btn-settings" aria-label="Settings" title="Settings"></button>
+    </header>
+    <main class="layout">
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+      <div id="panel-top" class="player"></div>
+      <div class="board-frame">
+        <div id="board" tabindex="0" role="grid" aria-label="Game board. Use arrow keys to move, Enter to select."></div>
+        <div id="veil" class="veil" hidden><span>Paused</span></div>
+      </div>
+      <div id="panel-bottom" class="player"></div>
+      <div class="moves"><div class="moves-head">Moves</div><ol id="movelist"></ol></div>
+      <div class="actions">
+        <button class="btn act" id="btn-undo"></button>
+        <button class="btn act" id="btn-restart"></button>
+        <button class="btn act" id="btn-pause2"></button>
+      </div>
+      <p class="kbd-help">Keys: arrows + Enter to move · U undo · P pause · Esc deselect</p>
+    </main>
+  </section>
+</div>
+
+<div id="layer"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<div id="sr" class="sr-only" aria-live="polite"></div>
+<noscript><p style="padding:24px;color:#eee">Mind Board needs JavaScript enabled.</p></noscript>
+<script src="game.js"></script>
+</body>
+</html>
